@@ -1,0 +1,6 @@
+.idea*
+datasets
+*.log
+.DS_Store
+project/project
+target/
