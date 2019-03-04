@@ -1,22 +1,22 @@
-name := "packt-machine-learning-spark"
+ThisBuild / name := "packt-machine-learning-spark"
+ThisBuild / version := "0.1"
+ThisBuild / scalaVersion := "2.12.8"
 
-version := "0.1"
-
-scalaVersion := "2.12.8"
 
 val sparkVersion = "2.4.0"
 
 // !!! Make sure to build releases with `sbt -DsparkDependencyScope=provided clean assembly` !!!
 val dependencyScope = sys.props.getOrElse("sparkDependencyScope", default = "compile")
 
-libraryDependencies ++= Seq(
+ThisBuild / libraryDependencies ++= Seq(
   // Spark resources
   "org.apache.spark" %% "spark-core" % sparkVersion % dependencyScope,
   "org.apache.spark" %% "spark-sql" % sparkVersion % dependencyScope,
   "org.apache.spark" %% "spark-mllib" % sparkVersion % dependencyScope,
+  "org.apache.spark" %% "spark-graphx" % sparkVersion % dependencyScope,
 )
 
-scalacOptions ++= Seq(
+ThisBuild / scalacOptions ++= Seq(
   "-deprecation",
   "-unchecked",
   "-Xlint",
@@ -26,3 +26,9 @@ scalacOptions ++= Seq(
   "-language:_",
   "-encoding", "UTF-8"
 )
+
+
+lazy val sparkui = (project in file("01-sparkui"))
+  .settings(
+    mainClass in Compile := Some("info.lous.packt.mlspark.SparkUIDemo")
+  )

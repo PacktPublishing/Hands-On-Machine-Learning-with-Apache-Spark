@@ -5,3 +5,4 @@ datasets
 project/project
 target/
 *.iml
+spark-warehouse/
