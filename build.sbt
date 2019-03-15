@@ -30,5 +30,5 @@ ThisBuild / scalacOptions ++= Seq(
 
 lazy val sparkui = (project in file("01-sparkui"))
   .settings(
-    mainClass in Compile := Some("info.lous.packt.mlspark.SparkUIDemo")
+    mainClass in Compile := Some("info.lous.packt.mlspark.exercises.SparkUIDemo")
   )

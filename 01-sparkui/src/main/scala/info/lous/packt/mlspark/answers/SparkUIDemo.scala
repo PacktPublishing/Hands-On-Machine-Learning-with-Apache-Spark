@@ -1,9 +1,9 @@
 /*
- * Created by Tom Lous on 2019-03-04
+ * Created by Tom Lous on 2019-03-15
  * Copyright © 2019 Packt Publishing Ltd.
  */
 
-package info.lous.packt.mlspark
+package info.lous.packt.mlspark.answers
 
 import org.apache.log4j.Logger
 import org.apache.spark.sql.SparkSession
@@ -20,6 +20,8 @@ object SparkUIDemo extends App {
   val spark = SparkSession.builder()
     .master("local[*]")
     .appName("SparkUIDemo")
+    .config("spark.eventLog.enabled", "true")
+    .config("spark.eventLog.dir", "/tmp/spark-events-log")
     .getOrCreate()
 
   import spark.implicits._
@@ -63,6 +65,4 @@ object SparkUIDemo extends App {
   // Used cached
   cached.show()
 
-  // Don't kill SparkUI for 1h
-  Thread.sleep(60 * 60 * 1000)
 }
